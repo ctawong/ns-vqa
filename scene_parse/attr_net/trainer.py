@@ -38,7 +38,7 @@ class Trainer:
                 loss = self.model.get_loss()
 
                 if t % self.display_every == 0:
-                    self.stats['train_losses'].append(loss)
+                    self.stats['train_losses'].append(float(loss))
                     print('| iteration %d / %d, epoch %d, loss %f' % (t, self.num_iters, epoch, loss))
                     self.stats['train_losses_ts'].append(t)
 
@@ -49,10 +49,10 @@ class Trainer:
                         print('| validation loss %f' % val_loss)
                         if val_loss <= self.stats['best_val_loss']:
                             print('| best model')
-                            self.stats['best_val_loss'] = val_loss
+                            self.stats['best_val_loss'] = float(val_loss)
                             self.stats['model_t'] = t
                             self.model.save_checkpoint('%s/checkpoint_best.pt' % self.run_dir)
-                        self.stats['val_losses'].append(val_loss)
+                        self.stats['val_losses'].append( float(val_loss))
                         self.stats['val_losses_ts'].append(t)
                     print('| saving checkpoint')
                     self.model.save_checkpoint('%s/checkpoint_iter%08d.pt' %

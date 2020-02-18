@@ -61,7 +61,7 @@ class AttributeNetwork():
         if PYTORCH_VER.startswith('0.4'):
             return self.loss.data.item()
         else:
-            return self.loss.data[0]
+            return self.loss.data
 
     def get_pred(self):
         return self.pred.data.cpu().numpy()
